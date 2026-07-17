@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "skills": {
+    "antigravity-draw": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\04-draw",
+      "sourceType": "local",
+      "computedHash": "3e16c301667c60518eb495fc1d0604353d9c6bdea7b35d3efef121ddd7d20a50"
+    },
+    "antigravity-firebase": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\03-firebase",
+      "sourceType": "local",
+      "computedHash": "b516061541a748d36471a3d2999886cc65258fc484e621b7ff44767afded6097"
+    },
+    "antigravity-github": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\02-github",
+      "sourceType": "local",
+      "computedHash": "210e35fff81d0405ffd6fb8d6f0470011ca609364449f5c9dc6b2c391aca2344"
+    },
+    "antigravity-install-all": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\00-install-all",
+      "sourceType": "local",
+      "computedHash": "a9ba96745641cb4476b83dd6226a218ff3088a5746ca046a889b6ea49f4ded01"
+    },
+    "antigravity-notebooklm": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\01-notebooklm",
+      "sourceType": "local",
+      "computedHash": "b772aa2269aa37fd5afcf22367e7a268fffc3a0319b57de632b6e264b39466bd"
+    },
+    "antigravity-obsidian": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\06-obsidian",
+      "sourceType": "local",
+      "computedHash": "e4d57ca8469153d3eb100152cc0d2a236dd7443d1cae532b102c5e1fd3872044"
+    },
+    "antigravity-workflow": {
+      "source": "G:\\我的雲端硬碟\\2026_Antigravity\\skills\\05-workflow",
+      "sourceType": "local",
+      "computedHash": "bdbdbbe562d7b6aaecb6fc43d42e56eafe16c1f59fd66d8501042e03f623053e"
+    }
+  }
+}
