@@ -5,7 +5,7 @@
 專案名稱：antigravity-lazy-pack
 專案用途：AntiGravity 懶人包 — 服務連接與工作流程設定。
 主要工作目錄：g:/我的雲端硬碟/2026_Antigravity
-GitHub repo：https://github.com/mathruffian-dot/antigravity-lazy-pack
+GitHub repo：https://github.com/truda0124/antigravity-lazy-pack
 預設 branch：main
 
 ## Obsidian 對應筆記
