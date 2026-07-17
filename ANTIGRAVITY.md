@@ -11,15 +11,17 @@ GitHub repo：https://github.com/truda0124/antigravity-lazy-pack
 ## Obsidian 對應筆記
 
 Obsidian vault：G:\我的雲端硬碟\Truda'sbrain
-專案駕駛艙：G:\我的雲端硬碟\Truda'sbrain\創作庫\antigravity-lazy-pack 專案駕駛艙.md
+工作筆記：G:\我的雲端硬碟\Truda'sbrain\創作庫\antigravity-lazy-pack 工作筆記.md
 
 ## 工作規則
 
 - 回應使用繁體中文。
 - 涉及檔案操作時回報完整產出位置。
 - 使用 PowerShell 語法。
-- 開工時讀本檔、檢查 Git 狀態。
-- 收工時更新本檔，檢查 diff 後只提交相關檔案。
+- 開工時讀本檔、檢查 Git 狀態，並讀取工作筆記內容。
+- 收工時使用追加（append）模式紀錄進度到工作筆記中。
+- 只有固定規則或路徑改變時才更新本檔。
+- 檢查 diff 後只提交相關檔案。
 - 不要把每日流水帳寫進本檔。
 
 ## 不要做
