@@ -1,10 +1,10 @@
-﻿# Anti-Gravity 懶人包 #09：服務連接與工作流程設定
+# Anti-Gravity 懶人包 #09：服務連接與工作流程設定
 
-> 版本：v1.4
-> 更新日期：2026-05-31
+> 版本：v1.5
+> 更新日期：2026-08-13
 > 語系偏好：繁體中文（Taiwan）
 
-這份懶人包的目標，是讓 Anti-Gravity 使用者能安全連接 NotebookLM、Firebase、GitHub、Obsidian，並建立「開工 / 收工 / 新專案初始化」工作流程。本版本已重新加回了 Obsidian MCPVault 的一鍵整合設定與專屬 Skill。
+這份懶人包的目標，是讓 Anti-Gravity 使用者能安全連接 NotebookLM、Firebase、GitHub、Obsidian、Apps Script (clasp)，並建立「開工 / 收工 / 新專案初始化」工作流程。本版本已整合了 clasp v3 與 Apps Script 連線設定，並加入了對應的專屬 Skill。
 
 本文件只放可公開教學的設定流程，不放任何個人 NotebookLM 清單、筆記本 ID、研究報告、生成圖片、帳號 token 或測試專案。
 
@@ -15,11 +15,12 @@
 - [ ] 已安裝 Anti-Gravity 或可使用 MCP 的 AI 編碼助理
 - [ ] 已安裝 Git
 - [ ] 已安裝 GitHub CLI（`gh`）
-- [ ] 已安裝 Node.js / npm
+- [ ] 已安裝 Node.js 22 / npm 以上 (clasp v3 要求)
 - [ ] 已安裝 Python 或 `uv`
-- [ ] 有 Google 帳號，可登入 NotebookLM / Firebase
+- [ ] 有個人 Google 帳號，可登入 NotebookLM / Firebase / Apps Script
 - [ ] 有 GitHub 帳號
 - [ ] 已有 Obsidian vault，或知道筆記本資料夾位置
+- [ ] 已在 [script.google.com/home/usersettings](https://script.google.com/home/usersettings) 開啟 「Google Apps Script API」
 
 Windows 快速檢查：
 
@@ -312,6 +313,67 @@ Anti-Gravity 可使用專案根目錄的 `ANTIGRAVITY.md` 作為 AI 工作規則
 
 ---
 
+## 七、連接 Apps Script (clasp)
+
+### 重點原則
+
+- **一律使用個人 Google 帳號**：受管理的 Workspace 帳號常會遇到 `admin_policy_enforced` 限制。
+- **使用 npx 執行**：一律以 `npx @google/clasp` 執行指令，避免全域安裝引發的 Windows 執行原則問題。
+- **禁止自行拼接 Web App 網址**：請勿拿 `scriptId` 拼接網址，應一律透過 `open-web-app --json` 取得。
+
+### 安裝與登入
+
+1. 登入 clasp：
+   ```powershell
+   npx @google/clasp login
+   ```
+   *執行時請在開啟的瀏覽器中選擇個人 Google 帳號授權。*
+
+2. 驗證登入狀態：
+   ```powershell
+   npx @google/clasp show-authorized-user --json
+   ```
+
+### 建立與部署專案
+
+- **新建並綁定試算表**：
+  ```powershell
+  npx @google/clasp create-script --type sheets --title "您的專案名稱"
+  ```
+- **綁定現有試算表**：
+  ```powershell
+  npx @google/clasp create-script --title "您的專案名稱" --parentId "<試算表檔案ID>"
+  ```
+- **推播程式碼至雲端**：
+  ```powershell
+  npx @google/clasp push
+  ```
+- **部署為網頁應用程式**：
+  ```powershell
+  npx @google/clasp create-deployment --description "第一版"
+  ```
+- **取得部署網址**（重要：不可自行拼接）：
+  ```powershell
+  npx @google/clasp open-web-app <deploymentId> --json
+  ```
+
+### 註冊 clasp MCP
+
+設定檔位置請用 **Settings → Customizations → Installed MCP Servers → View raw config**：
+
+```json
+{
+  "mcpServers": {
+    "clasp": {
+      "command": "npx",
+      "args": ["-y", "@google/clasp", "mcp"]
+    }
+  }
+}
+```
+
+---
+
 ## 建議的 ANTIGRAVITY.md 範本
 
 ```markdown
@@ -358,6 +420,7 @@ Obsidian vault：
 - GitHub：已登入 / 待登入 / 失敗
 - Firebase：已登入 / 待登入 / 未使用
 - Obsidian：已連接 / 待設定 / 失敗
+- Apps Script (clasp)：已連接 / 待設定 / 失敗
 - 規則檔：ANTIGRAVITY.md 已建立 / 已更新 / 未建立
 - Git 狀態：乾淨 / 有未提交變更
 - 下一步：
@@ -374,6 +437,8 @@ Obsidian vault：
 | Windows 顯示編碼錯誤 | 設定 `$env:PYTHONIOENCODING = "utf-8"` 後重試 |
 | GitHub CLI 未登入 | `gh auth login --web --git-protocol https` |
 | Firebase login 卡住 | 在互動式 PowerShell 手動跑 `npx.cmd -y firebase-tools@latest login` |
+| clasp 遭遇 admin_policy_enforced | logout 後重新登入，改用個人 Google 帳號 |
+| Apps Script API 未開啟 | 至 script.google.com/home/usersettings 開啟，並等待 1-2 分鐘生效 |
 | PowerShell 擋 `npm.ps1` / `npx.ps1` | 改用 `npm.cmd` / `npx.cmd` |
 | Obsidian 找不到 vault | 搜尋含 `.obsidian` 的資料夾，請使用者確認真正使用的 vault |
 | 收工會納入太多檔案 | 先看 `git status` 與 diff，只 stage 本次相關檔案 |
@@ -384,6 +449,7 @@ Obsidian vault：
 
 | 日期 | 版本 | 更新內容 |
 |---|---|---|
+| 2026-08-13 | v1.5 | 整合 clasp v3 與 Google Apps Script (GAS) 連線技能與設定教學 |
 | 2026-05-31 | v1.4 | 重新加回 Obsidian MCPVault 設定與開工/收工自動化流程，並加入獨立 Skill 目錄 |
 | 2026-05-24 | v1.2 | 移除 Obsidian MCPVault 安裝與 MCP 註冊，保留 Obsidian 作為人工專案筆記工作流 |
 | 2026-05-23 | v1.1 | 移除 NotebookLM 個人資料與成果檔定位，改正 NotebookLM OAuth、Obsidian MCP、Git 收工安全流程 |
