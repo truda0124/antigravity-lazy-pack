@@ -1,0 +1,4 @@
+interface:
+  display_name: "智慧雙模校園與人際溝通助手"
+  short_description: "智慧校園行政布告與高EQ人際協商雙模溝通助手。支援觸發詞：公告、潤飾、回應、群組公告、對話。"
+  default_prompt: "Use $smart-communicator to run this upgraded Gem workflow."

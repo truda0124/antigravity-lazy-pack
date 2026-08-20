@@ -1,0 +1,4 @@
+interface:
+  display_name: "設計群科教學教案、學習單與極簡時尚簡報全流程助手"
+  short_description: "設計群科教學教案、學習單、單元試題與極簡時尚簡報全流程助手。支援觸發詞：備課、寫教案、做簡報、學習單、出單元試題。"
+  default_prompt: "Use $design-course-assistant to run this upgraded Gem workflow."
